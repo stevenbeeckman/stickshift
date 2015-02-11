@@ -18,7 +18,8 @@ To run the simple demo:
 
 ```sh
 $ npm install
-$ npm start
+$ browserify site.js -o bundle.js
+$ node example_server.js
 ```
 
 Then you can configure the server by editing
