@@ -2,6 +2,7 @@
 //var db = new sqlite3.Database(':memory:');
 
 var mysql = require('mysql'); // https://www.npmjs.com/package/mysql
+var moment = require('moment');
 var db = mysql.createConnection({ //bf152025fa6eaf:7fa53522
   host: "us-cdbr-iron-east-01.cleardb.net"
   , user: ""
@@ -23,7 +24,7 @@ db.query('CREATE TABLE fake (x DATETIME, y INT, z INT)', function(err, result){
       // truly random data and totally sin-wave data looks weird, so we
       // have a slowly-changing random offset
       db.query('INSERT INTO fake VALUES (?, ?, ?)', [
-        (new Date((+new Date() - (i * 1000 * 60 * 60)))).toString(),
+        moment((new Date((+new Date() - (i * 1000 * 60 * 60))))).format('YYYY-MM-DD HH:mm:ss'),,
         ((Math.sin(i/10) + 1) * 10) + Math.random() * 20,
         ((Math.cos(i/5) + 1) * 40) + Math.random() * 5
       ], function(err, result){
